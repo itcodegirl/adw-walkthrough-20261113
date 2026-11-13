@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage offerings | Jenna Studio</title>
+  </head>
+  <body data-page="admin">
+    <header><!-- filled by src/shell.js --></header>
+    <main>
+      <h1>Manage offerings</h1>
+      <p>A read-only view of the offerings table. Editing arrives with login.</p>
+      <section class="admin">
+        <h2>Offerings</h2>
+        <p class="form-note">Published and All show the same rows until login, because drafts remain restricted. Drafts appear once login exists in Module 4. Inquiries remain unavailable until login.</p>
+        <form class="admin-controls" role="search" novalidate>
+          <div class="field">
+            <label for="admin-search">Search by title</label>
+            <input id="admin-search" name="search" type="search" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="admin-status">Show</label>
+            <select id="admin-status" name="status">
+              <option value="published" selected>Published</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+        </form>
+        <p class="section-status" id="admin-count" role="status"></p>
+        <p class="section-status" id="admin-state" role="status">Loading offerings…</p>
+        <button type="button" id="admin-clear" hidden>Clear search</button>
+        <ul class="admin-list" id="admin-list" role="list"></ul>
+      </section>
+    </main>
+    <footer><!-- filled by src/shell.js --></footer>
+    <script type="module" src="/src/admin.js"></script>
+  </body>
+</html>

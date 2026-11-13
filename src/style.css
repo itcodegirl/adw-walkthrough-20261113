@@ -248,6 +248,7 @@ main > p {
 }
 
 .field input,
+.field select,
 .field textarea {
   width: 100%;
   box-sizing: border-box;
@@ -325,14 +326,41 @@ main > p {
   font-weight: var(--weight-bold);
 }
 
+/* Manage offerings page. Everything in the section spans the card
+   grid; the list itself stacks one card per row at every width. */
+.admin > * {
+  grid-column: 1 / -1;
+}
+
+.admin-controls {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.admin-list {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-meta {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+}
+
 .field input:focus-visible,
+.field select:focus-visible,
 .field textarea:focus-visible,
-.contact button:focus-visible {
+.contact button:focus-visible,
+.admin button:focus-visible {
   outline: var(--stroke-focus) solid var(--color-accent);
   outline-offset: var(--focus-offset-sm);
 }
 
-.contact button {
+.contact button,
+.admin button {
   justify-self: start;
   padding: var(--space-3) var(--space-5);
   font: inherit;
@@ -372,6 +400,10 @@ section {
 
   section h2 {
     grid-column: 1 / -1;
+  }
+
+  .admin-controls {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

@@ -6,5 +6,6 @@ export default defineConfig({
   input: {
     main: resolve(import.meta.dirname, 'index.html'),
     about: resolve(import.meta.dirname, 'about.html'),
+    admin: resolve(import.meta.dirname, 'admin.html'),
   },
 })
