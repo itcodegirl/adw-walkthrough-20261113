@@ -12,19 +12,19 @@ renderShell(document.body.dataset.page)
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function validateName(value) {
-  if (value.trim() === '') return 'Enter your name.'
+  if (value.trim() === '') return 'Tell us your name.'
   return ''
 }
 
 function validateEmail(value) {
   const trimmed = value.trim()
-  if (trimmed === '') return 'Enter your email address.'
-  if (!EMAIL_PATTERN.test(trimmed)) return 'Enter an email address like name@example.com.'
+  if (trimmed === '') return 'Add an email address so we know how to reply.'
+  if (!EMAIL_PATTERN.test(trimmed)) return 'Use an email address like you@example.com.'
   return ''
 }
 
 function validateMessage(value) {
-  if (value.trim() === '') return 'Enter a short message.'
+  if (value.trim() === '') return 'Tell us a little about your project.'
   return ''
 }
 
@@ -34,12 +34,12 @@ function validateMessage(value) {
    on submit only, never per keystroke.
    --------------------------------------------------------------- */
 
-const VALID_TEXT = 'Looks good.'
+const VALID_TEXT = 'Ready.'
 
 // TEMPORARY COPY: replace once the database is connected and
 // submissions are actually stored.
 const SUBMIT_OK_TEXT =
-  'Thanks, your details check out. Nothing has been sent or saved yet. ' +
+  'Your details are ready for the next step. This demo has not sent or saved them. ' +
   'Submissions will be stored once the database is connected.'
 
 const FIELDS = [
