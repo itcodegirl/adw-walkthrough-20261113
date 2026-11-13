@@ -7,6 +7,7 @@
   --color-surface: #fff;
   --color-border: #e3ded4;
   --color-border-input: #c9c3b6;
+  --color-error: #a23b2a;
 
   /* Type */
   --font-heading: Georgia, serif;
@@ -32,6 +33,7 @@
   --space-6: 1.5rem;
   --space-8: 3rem;
   --space-field-y: 0.6rem;
+  --size-field-message: 2.8125rem; /* two lines of --text-sm at --leading-body */
 
   /* Shape and strokes */
   --radius-sm: 0.375rem;
@@ -233,6 +235,49 @@ main > p {
 
 .field textarea {
   resize: vertical;
+}
+
+/* Field validation states. Border width stays hairline and each
+   field reserves a fixed message slot, so revealing a message never
+   moves the submit button under the pointer. Text and weight carry
+   the meaning, not colour alone. The status line sits below the
+   button, so it may still collapse when empty. */
+.field-message,
+.form-status {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.field-message {
+  min-height: var(--size-field-message);
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.field.is-invalid input,
+.field.is-invalid textarea {
+  border-color: var(--color-error);
+}
+
+.field.is-invalid .field-message {
+  color: var(--color-error);
+  font-weight: var(--weight-bold);
+}
+
+.field.is-valid input,
+.field.is-valid textarea {
+  border-color: var(--color-accent);
+}
+
+.field.is-valid .field-message {
+  color: var(--color-accent);
+}
+
+.form-status {
+  color: var(--color-accent);
+  font-weight: var(--weight-bold);
 }
 
 .field input:focus-visible,
