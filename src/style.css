@@ -123,6 +123,24 @@ main > p {
   scroll-margin-top: var(--space-4);
 }
 
+.process ol {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.process h3 {
+  color: var(--color-accent);
+  font-size: var(--text-md);
+  margin: 0 0 var(--space-1);
+}
+
+.process p {
+  margin: 0;
+}
+
 .contact form {
   grid-column: 1 / -1;
   display: grid;
