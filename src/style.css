@@ -1,28 +1,71 @@
+/* Design tokens. Every rule below references these by role. */
 :root {
-  --bg: #faf8f4;
-  --text: #25352b;
-  --brand: #285b3a;
+  /* Colour */
+  --color-bg: #faf8f4;
+  --color-text: #25352b;
+  --color-accent: #285b3a;
+  --color-surface: #fff;
+  --color-border: #e3ded4;
+  --color-border-input: #c9c3b6;
+
+  /* Type */
+  --font-heading: Georgia, serif;
+  --font-body: system-ui, sans-serif;
+  --text-xs: 0.875rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.5rem;
+  --text-xl: clamp(1.75rem, 5vw, 2.5rem);
+  --weight-bold: 700;
+  --leading-body: 1.5;
+  --leading-heading: 1.2;
+  --underline-offset: 0.2em;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 3rem;
+  --space-field-y: 0.6rem;
+
+  /* Shape and strokes */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --stroke-hairline: 1px;
+  --stroke-underline: 2px;
+  --stroke-focus: 3px;
+  --stroke-note: 4px;
+  --focus-offset-sm: 2px;
+  --focus-offset-lg: 4px;
+
+  /* Layout */
+  --content-width: 40rem;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
-  background: var(--bg);
-  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 header,
 main,
 footer {
-  max-width: 40rem;
+  max-width: var(--content-width);
   margin: 0 auto;
-  padding: 1rem;
+  padding: var(--space-4);
 }
 
 header a {
-  color: var(--brand);
-  font-weight: 700;
+  color: var(--color-accent);
+  font-weight: var(--weight-bold);
   text-decoration: none;
 }
 
@@ -32,81 +75,87 @@ header a:focus-visible {
 }
 
 header a:focus-visible {
-  outline: 3px solid var(--brand);
-  outline-offset: 4px;
+  outline: var(--stroke-focus) solid var(--color-accent);
+  outline-offset: var(--focus-offset-lg);
 }
 
 main {
-  padding: 3rem 1rem;
+  padding: var(--space-8) var(--space-4);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
 }
 
 h1 {
-  color: var(--brand);
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
-  line-height: 1.2;
-  margin: 0 0 1rem;
+  color: var(--color-accent);
+  font-size: var(--text-xl);
+  line-height: var(--leading-heading);
+  margin: 0 0 var(--space-4);
 }
 
 main > p {
-  font-size: 1.125rem;
+  font-size: var(--text-md);
   margin: 0;
 }
 
 .hero-link {
   display: inline-block;
-  margin-top: 1.5rem;
-  color: var(--brand);
-  font-weight: 700;
+  margin-top: var(--space-6);
+  color: var(--color-accent);
+  font-weight: var(--weight-bold);
   text-decoration: underline;
-  text-underline-offset: 0.2em;
+  text-underline-offset: var(--underline-offset);
 }
 
 .hero-link:hover {
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: var(--stroke-underline);
 }
 
 .hero-link:focus-visible {
-  outline: 3px solid var(--brand);
-  outline-offset: 4px;
+  outline: var(--stroke-focus) solid var(--color-accent);
+  outline-offset: var(--focus-offset-lg);
 }
 
 #selected-work {
-  scroll-margin-top: 1rem;
+  scroll-margin-top: var(--space-4);
 }
 
 .contact form {
   grid-column: 1 / -1;
   display: grid;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .form-note {
   margin: 0;
-  padding: 0.75rem 1rem;
-  background: #fff;
-  border-left: 4px solid var(--brand);
-  font-size: 0.9375rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-left: var(--stroke-note) solid var(--color-accent);
+  font-size: var(--text-sm);
 }
 
 .field {
   display: grid;
-  gap: 0.25rem;
+  gap: var(--space-1);
 }
 
 .field label {
-  font-weight: 700;
+  font-weight: var(--weight-bold);
 }
 
 .field input,
 .field textarea {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.6rem 0.75rem;
+  padding: var(--space-field-y) var(--space-3);
   font: inherit;
-  color: var(--text);
-  background: #fff;
-  border: 1px solid #c9c3b6;
-  border-radius: 0.375rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--stroke-hairline) solid var(--color-border-input);
+  border-radius: var(--radius-sm);
 }
 
 .field textarea {
@@ -116,37 +165,39 @@ main > p {
 .field input:focus-visible,
 .field textarea:focus-visible,
 .contact button:focus-visible {
-  outline: 3px solid var(--brand);
-  outline-offset: 2px;
+  outline: var(--stroke-focus) solid var(--color-accent);
+  outline-offset: var(--focus-offset-sm);
 }
 
 .contact button {
   justify-self: start;
-  padding: 0.75rem 1.25rem;
+  padding: var(--space-3) var(--space-5);
   font: inherit;
-  font-weight: 700;
-  color: var(--bg);
-  background: var(--brand);
+  font-weight: var(--weight-bold);
+  color: var(--color-bg);
+  background: var(--color-accent);
   border: 0;
-  border-radius: 0.375rem;
+  border-radius: var(--radius-sm);
   cursor: pointer;
 }
 
 section {
-  margin-top: 3rem;
+  margin-top: var(--space-8);
 }
 
 h2 {
-  color: var(--brand);
-  font-size: 1.5rem;
-  margin: 0 0 1rem;
+  color: var(--color-accent);
+  font-size: var(--text-lg);
+  margin: 0 0 var(--space-4);
 }
 
 section {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
+/* Breakpoint stays a literal: custom properties cannot be used inside
+   media query conditions. Keep in step with --content-width (40rem). */
 @media (min-width: 40rem) {
   section {
     grid-template-columns: 1fr 1fr;
@@ -158,16 +209,16 @@ section {
 }
 
 article {
-  background: #fff;
-  border: 1px solid #e3ded4;
-  border-radius: 0.5rem;
-  padding: 1.25rem;
+  background: var(--color-surface);
+  border: var(--stroke-hairline) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
 }
 
 article h3 {
-  color: var(--brand);
-  font-size: 1.125rem;
-  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  font-size: var(--text-md);
+  margin: 0 0 var(--space-2);
 }
 
 article p {
@@ -175,5 +226,5 @@ article p {
 }
 
 footer {
-  font-size: 0.875rem;
+  font-size: var(--text-xs);
 }
