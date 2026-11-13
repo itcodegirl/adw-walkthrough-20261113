@@ -1,10 +1,57 @@
+:root {
+  --bg: #faf8f4;
+  --text: #25352b;
+  --brand: #285b3a;
+}
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
   line-height: 1.5;
+  background: var(--bg);
+  color: var(--text);
 }
-main {
+
+header,
+main,
+footer {
   max-width: 40rem;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1rem;
+}
+
+header a {
+  color: var(--brand);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+header a:hover,
+header a:focus-visible {
+  text-decoration: underline;
+}
+
+header a:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 4px;
+}
+
+main {
+  padding: 3rem 1rem;
+}
+
+h1 {
+  color: var(--brand);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+main p {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+footer {
+  font-size: 0.875rem;
 }
