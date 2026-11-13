@@ -38,3 +38,4 @@ Standing rules for all work in this project.
   ```
 
 - Suggest a commit after each verified working change; never leave large edits uncommitted. The learner reviews and makes the commit.
+- Work happens on branches; propose commits after verified changes; keep diffs scoped to the task.

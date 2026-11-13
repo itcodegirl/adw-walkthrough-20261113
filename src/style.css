@@ -74,6 +74,64 @@ main > p {
   scroll-margin-top: 1rem;
 }
 
+.contact form {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 1rem;
+}
+
+.form-note {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border-left: 4px solid var(--brand);
+  font-size: 0.9375rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.field label {
+  font-weight: 700;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid #c9c3b6;
+  border-radius: 0.375rem;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible,
+.contact button:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.contact button {
+  justify-self: start;
+  padding: 0.75rem 1.25rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--brand);
+  border: 0;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
 section {
   margin-top: 3rem;
 }
