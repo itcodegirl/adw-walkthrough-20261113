@@ -63,3 +63,9 @@ Standing rules for all work in this project.
 - A red test blocks the commit until resolved deliberately.
 - Workflow: branch → task → diff → TEST → commit → push → live.
 - These pure-function smoke tests do not prove DOM, network, Auth or database policies.
+
+## Six-question review
+
+Before proposing, verify all six in order: scope (only the task), system (tokens and patterns), data (named columns, intended rows, minimal writes, handled errors), trust (named gate/policy pairing and clean secrets), floor (contrast, keyboard focus, labels, semantics, image alternatives), tests (green and new pure logic has a promise).
+
+Final loop: branch → task → diff×6 → test → commit → push → live. Approve, request a surgical follow-up, or reject with a clear reason and tighter brief. Code review never substitutes for a required real identity or hosted verification receipt.

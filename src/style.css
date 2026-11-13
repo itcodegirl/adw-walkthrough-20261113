@@ -386,6 +386,19 @@ main > p {
   gap: var(--space-4);
 }
 
+/* Home services search: spans the card grid, hidden until there is
+   something to search. The hidden attribute needs an explicit rule
+   because the form is a grid. */
+.services-search {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.services-search[hidden] {
+  display: none;
+}
+
 .admin-list,
 .inquiry-list {
   display: grid;
@@ -419,14 +432,16 @@ main > p {
 .field textarea:focus-visible,
 .contact button:focus-visible,
 .admin button:focus-visible,
-.login button:focus-visible {
+.login button:focus-visible,
+.services-search button:focus-visible {
   outline: var(--stroke-focus) solid var(--color-accent);
   outline-offset: var(--focus-offset-sm);
 }
 
 .contact button,
 .admin button,
-.login button {
+.login button,
+.services-search button {
   justify-self: start;
   padding: var(--space-3) var(--space-5);
   font: inherit;

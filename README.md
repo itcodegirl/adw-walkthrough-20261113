@@ -8,6 +8,10 @@ A small portfolio site for a web developer serving local businesses. Built with 
 - `about.html` — about Jenna and the FAQ.
 - `admin.html` — read-only manage view of offerings. Public page; data access is limited by database policy.
 
+## Service search
+
+The home page has a search field above the services cards. It filters the published offerings that are already loaded, in the browser, so typing sends no network request. Matching is on the service title and ignores case. The list keeps its original order and the count line shows how many of the loaded services match. Clear search empties the field, restores the full list, and returns focus to the field. The pure matching logic lives in `src/filter.js` with its tests in `src/filter.test.js`.
+
 ## Configuration
 
 The browser client is created in `src/supabase.js` from two environment variables. Vite exposes them because of the `VITE_` prefix.

@@ -3,12 +3,14 @@ import { renderShell } from './shell.js'
 import { supabase } from './supabase.js'
 import { getSessionState, onSessionChange } from './auth.js'
 import { validateName, validateEmail, validateMessage } from './validate.js'
+import { filterByTitle } from './filter.js'
 
 renderShell(document.body.dataset.page)
 
 /* ---------------------------------------------------------------
-   Services: offerings read from the database. Database strings are
-   rendered with textContent only, never as HTML.
+   Services: published offerings read once from the database, then
+   searched by title in memory. Typing never fetches. Database
+   strings are rendered with textContent only, never as HTML.
    --------------------------------------------------------------- */
 
 const OFFERINGS_LOADING_TEXT = 'Loading services…'
@@ -29,9 +31,51 @@ async function initOfferings() {
   const section = document.getElementById('services')
   if (!section) return // about.html has no services section
 
-  const status = section.querySelector('.section-status')
-  status.textContent = OFFERINGS_LOADING_TEXT
-  status.classList.remove('is-error')
+  const heading = section.querySelector('h2')
+  const searchForm = section.querySelector('.services-search')
+  const search = document.getElementById('services-search')
+  const clearButton = document.getElementById('services-clear')
+  const count = document.getElementById('services-count')
+  const state = document.getElementById('services-state')
+
+  let rows = [] // the fetched, published, already sorted offerings
+
+  function setState(text, isError = false) {
+    state.textContent = text
+    state.classList.toggle('is-error', isError)
+  }
+
+  // Re-draw the cards from rows held in memory. No network here.
+  function render() {
+    section.querySelectorAll('article').forEach((card) => card.remove())
+
+    const query = search.value.trim()
+    const visible = filterByTitle(rows, query)
+
+    // Clear search is offered whenever a query is active, matches or not.
+    clearButton.hidden = query === ''
+    count.textContent = query === '' ? '' : `Showing ${visible.length} of ${rows.length} services`
+
+    if (visible.length === 0) {
+      // The typed term goes in via textContent, so it is shown as text only.
+      setState(`No services match "${query}".`)
+      return
+    }
+
+    setState('')
+    visible.forEach((offering) => renderOffering(section, offering))
+  }
+
+  // Enter in the search field must not submit the form and reload the page.
+  searchForm.addEventListener('submit', (event) => event.preventDefault())
+  search.addEventListener('input', render)
+  clearButton.addEventListener('click', () => {
+    search.value = ''
+    render()
+    search.focus()
+  })
+
+  setState(OFFERINGS_LOADING_TEXT)
 
   const { data, error } = await supabase
     .from('offerings')
@@ -41,23 +85,22 @@ async function initOfferings() {
 
   if (error) {
     console.error('Offerings could not be loaded:', error)
-    status.textContent = OFFERINGS_ERROR_TEXT
-    status.classList.add('is-error')
+    setState(OFFERINGS_ERROR_TEXT, true)
     return
   }
 
   // Read succeeded: the count comes from the rows already fetched, so an
   // empty result honestly shows (0). Loading and error keep the plain heading.
-  const count = data ? data.length : 0
-  section.querySelector('h2').textContent = `Services (${count})`
+  rows = data ?? []
+  heading.textContent = `Services (${rows.length})`
 
-  if (!data || data.length === 0) {
-    status.textContent = OFFERINGS_EMPTY_TEXT
-    return
+  if (rows.length === 0) {
+    setState(OFFERINGS_EMPTY_TEXT)
+    return // nothing to search, so the search stays hidden
   }
 
-  status.textContent = ''
-  data.forEach((offering) => renderOffering(section, offering))
+  searchForm.hidden = false
+  render()
 }
 
 /* Validators live in validate.js so they can be tested on their own. */

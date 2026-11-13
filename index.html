@@ -25,7 +25,16 @@
       </section>
       <section id="services">
         <h2>Services</h2>
-        <p class="section-status" role="status">Loading services…</p>
+        <form class="services-search" role="search" novalidate hidden>
+          <div class="field">
+            <label for="services-search">Search services by title</label>
+            <input id="services-search" name="q" type="search" autocomplete="off" aria-describedby="services-search-hint" />
+            <p class="form-note" id="services-search-hint">Type part of a service title.</p>
+          </div>
+          <button type="button" id="services-clear" hidden>Clear search</button>
+        </form>
+        <p class="section-status" id="services-count" role="status"></p>
+        <p class="section-status" id="services-state" role="status">Loading services…</p>
         <!-- offering cards are added here by src/main.js -->
       </section>
       <section class="process">
