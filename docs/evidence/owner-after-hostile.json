@@ -1,0 +1,161 @@
+{
+  "project_id": "dpejxjvjdrxmyxpzyxjy",
+  "checkedAt": "2026-11-13T20:39:14.447Z",
+  "query": "select 'offerings' as table_name,coalesce(jsonb_agg(to_jsonb(t) order by id),'[]'::jsonb) as rows from (select id,created_at,title,description,sort_order,published,user_id from public.offerings) t union all select 'inquiries',coalesce(jsonb_agg(to_jsonb(t) order by id),'[]'::jsonb) from (select id,created_at,name,email,message,handled,user_id from public.inquiries) t union all select 'profiles',coalesce(jsonb_agg(to_jsonb(t) order by id),'[]'::jsonb) from (select id,is_admin from public.profiles) t;",
+  "tables": [
+    {
+      "table_name": "offerings",
+      "rows": [
+        {
+          "id": "25649f69-2201-4345-bcc4-3bdd511dd243",
+          "title": "Portfolio refresh",
+          "user_id": null,
+          "published": true,
+          "created_at": "2026-11-13T18:51:02.627582+00:00",
+          "sort_order": 2,
+          "description": "Improve an existing portfolio so it works harder for you."
+        },
+        {
+          "id": "4b9a0b96-d4f9-412b-8e97-9bd891dd1df2",
+          "title": "Content updates",
+          "user_id": null,
+          "published": false,
+          "created_at": "2026-11-13T18:51:09.74818+00:00",
+          "sort_order": 3,
+          "description": "Keep useful information current for your customers."
+        },
+        {
+          "id": "7e51e91c-df31-4267-8b98-593dd1891f81",
+          "title": "Website launch",
+          "user_id": null,
+          "published": true,
+          "created_at": "2026-11-13T18:51:02.627582+00:00",
+          "sort_order": 1,
+          "description": "A clear first website for your business."
+        },
+        {
+          "id": "907c742b-1ff3-49fb-a169-a3bfeaa94101",
+          "title": "probe-draft",
+          "user_id": null,
+          "published": false,
+          "created_at": "2026-11-13T19:11:04.019082+00:00",
+          "sort_order": 99,
+          "description": "Synthetic unpublished row for outside-app permission checks."
+        }
+      ]
+    },
+    {
+      "table_name": "inquiries",
+      "rows": [
+        {
+          "id": "37884da3-2bb7-48e0-bb5a-258e7e1d8f4c",
+          "name": "Learner20 fixed",
+          "email": "learner20fixed@example.invalid",
+          "handled": false,
+          "message": "20-fixed-verified: synthetic enquiry after pending-state correction.",
+          "user_id": null,
+          "created_at": "2026-11-13T19:02:48.718646+00:00"
+        },
+        {
+          "id": "726eb0f1-eb02-49b6-87b7-831bd3f095fe",
+          "name": "Learner29 Anonymous",
+          "email": "learner29local@example.invalid",
+          "handled": false,
+          "message": "29-owner-omission: real signed-out inquiry keeps user_id absent from request.",
+          "user_id": null,
+          "created_at": "2026-11-13T20:04:49.340139+00:00"
+        },
+        {
+          "id": "9de04ba2-45dd-46ab-be95-2a1f9390d084",
+          "name": "Learner29 Anonymous",
+          "email": "learner29hosted@example.invalid",
+          "handled": false,
+          "message": "29-owner-omission: real signed-out inquiry keeps user_id absent from request.",
+          "user_id": null,
+          "created_at": "2026-11-13T20:06:22.476936+00:00"
+        },
+        {
+          "id": "a1dc69c9-a86c-4504-ab97-8c2fe60a702a",
+          "name": "Learner20 Local",
+          "email": "learner20local@example.invalid",
+          "handled": false,
+          "message": "20-local-original: synthetic first contact save.",
+          "user_id": null,
+          "created_at": "2026-11-13T19:01:24.445112+00:00"
+        },
+        {
+          "id": "bf413601-dd88-4d9d-8037-efa9467d73ba",
+          "name": "Probe",
+          "email": "probe@example.invalid",
+          "handled": false,
+          "message": "32-capstone hostile test",
+          "user_id": null,
+          "created_at": "2026-11-13T20:35:48.281063+00:00"
+        },
+        {
+          "id": "c3c6e0e3-7a85-4389-b116-b8ab4e37bdf8",
+          "name": "Learner20 hosted",
+          "email": "learner20hosted@example.invalid",
+          "handled": false,
+          "message": "20-hosted-verified: synthetic enquiry after pending-state correction.",
+          "user_id": null,
+          "created_at": "2026-11-13T19:06:18.846006+00:00"
+        },
+        {
+          "id": "c8da7bb3-f233-4869-95b4-6888f717c3d1",
+          "name": "Learner32 Capstone",
+          "email": "learner32hosted@example.invalid",
+          "handled": false,
+          "message": "32-capstone: real signed-out submission with owner key omitted.",
+          "user_id": null,
+          "created_at": "2026-11-13T20:33:32.114871+00:00"
+        },
+        {
+          "id": "c9017304-a337-4ed2-98f3-28b56123d5a3",
+          "name": "Learner",
+          "email": "learner21@example.invalid",
+          "handled": false,
+          "message": "21-hostile-original: synthetic inquiry that must remain unchanged.",
+          "user_id": null,
+          "created_at": "2026-11-13T19:11:27.079305+00:00"
+        },
+        {
+          "id": "d3982a8c-ac42-4269-a412-1de0f4807922",
+          "name": "Learner22",
+          "email": "learner22@example.invalid",
+          "handled": false,
+          "message": "22-network: synthetic browser receipt for query audit.",
+          "user_id": null,
+          "created_at": "2026-11-13T19:16:35.20974+00:00"
+        },
+        {
+          "id": "e90ec36f-070c-42d3-a2e6-7bbec1739f9e",
+          "name": "Learner Jo",
+          "email": "learner@example.invalid",
+          "handled": true,
+          "message": "Synthetic walkthrough enquiry: a clear first website for a local shop.",
+          "user_id": null,
+          "created_at": "2026-11-13T18:52:22.598622+00:00"
+        }
+      ]
+    },
+    {
+      "table_name": "profiles",
+      "rows": []
+    }
+  ],
+  "added": [
+    {
+      "id": "bf413601-dd88-4d9d-8037-efa9467d73ba",
+      "name": "Probe",
+      "email": "probe@example.invalid",
+      "handled": false,
+      "message": "32-capstone hostile test",
+      "user_id": null,
+      "created_at": "2026-11-13T20:35:48.281063+00:00"
+    }
+  ],
+  "unchangedExisting": true,
+  "unchangedOtherTables": true,
+  "expectedProbeOnly": true
+}

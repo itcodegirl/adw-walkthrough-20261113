@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "evidence/learner/32-live-submit.mjs",
+    "32-live-submit",
+    "https://adw-walkthrough-20261113.vercel.app/",
+    "learner32hosted@example.invalid"
+  ],
+  "cwd": "/tmp/adw-learner-walkthrough-20261113-01a1d372",
+  "startedAt": "2026-11-13T20:33:30.694631+00:00",
+  "exit": 0,
+  "output": "{\n  \"base\": \"https://adw-walkthrough-20261113.vercel.app/\",\n  \"actualAnonymousSubmission\": true,\n  \"authSessionSupplied\": false,\n  \"personalViewHidden\": true,\n  \"requests\": [\n    {\n      \"method\": \"POST\",\n      \"path\": \"/rest/v1/inquiries\",\n      \"body\": {\n        \"name\": \"Learner32 Capstone\",\n        \"email\": \"learner32hosted@example.invalid\",\n        \"message\": \"32-capstone: real signed-out submission with owner key omitted.\"\n      }\n    }\n  ],\n  \"responses\": [\n    {\n      \"status\": 201,\n      \"method\": \"POST\"\n    }\n  ],\n  \"pageErrors\": [],\n  \"ownerReadbackRequired\": true\n}\n"
+}

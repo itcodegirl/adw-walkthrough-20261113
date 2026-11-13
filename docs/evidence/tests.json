@@ -1,0 +1,12 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--reporter=verbose"
+  ],
+  "cwd": "/tmp/adw-learner-walkthrough-20261113-01a1d372/learner-work/dev/my-app",
+  "startedAt": "2026-11-13T20:44:14.686564+00:00",
+  "exit": 0,
+  "output": "\n> my-app@0.0.0 test\n> vitest run --reporter=verbose\n\n\n RUN  v5.1.0 /tmp/adw-learner-walkthrough-20261113-01a1d372/learner-work/dev/my-app\n\n \u2713 src/filter.test.js > filterByTitle > an empty search returns every row in the same order 1ms\n \u2713 src/filter.test.js > filterByTitle > matches a mixed-case partial title 0ms\n \u2713 src/filter.test.js > filterByTitle > returns no rows when nothing matches 0ms\n \u2713 src/validate.test.js > validateEmail > accepts a normal email address 1ms\n \u2713 src/validate.test.js > validateEmail > rejects an address with no @ 0ms\n \u2713 src/validate.test.js > validateEmail > rejects an empty address 0ms\n \u2713 src/validate.test.js > validateName > rejects a whitespace-only name 0ms\n \u2713 src/validate.test.js > validateName > accepts a normal name 0ms\n \u2713 src/validate.test.js > validateMessage > rejects a whitespace-only message 0ms\n \u2713 src/validate.test.js > accepts an email padded with surrounding whitespace 0ms\n \u2713 src/validate.test.js > accepts a nonblank project message 0ms\n\n Test Files  2 passed (2)\n      Tests  11 passed (11)\n   Start at  20:44:14\n   Duration  66ms (import 37%, transform 26%, tests 20%, worker 16%, environment 1%)\n\n"
+}

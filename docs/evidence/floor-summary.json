@@ -1,0 +1,486 @@
+{
+  "scope": "Signed-out page states only; Chromium emulation, not physical devices, screen reader testing or human pacing. Real admin and personal-view interactions remain unverified.",
+  "sources": [
+    {
+      "receipt": "32-live-floor-main.json",
+      "startedAt": "2026-11-13T20:35:45.725392+00:00",
+      "seconds": 7.517998196
+    },
+    {
+      "receipt": "32-live-floor-admin.json",
+      "startedAt": "2026-11-13T20:35:45.725366+00:00",
+      "seconds": 3.1883393030000002
+    },
+    {
+      "receipt": "32-live-floor-login.json",
+      "startedAt": "2026-11-13T20:35:45.725401+00:00",
+      "seconds": 3.1683317189999998
+    }
+  ],
+  "checks": [
+    {
+      "page": "index.html",
+      "theme": "light",
+      "width": 390,
+      "visibleKeyboardStops": 11,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 6.196011781680303,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "about.html",
+      "theme": "light",
+      "width": 390,
+      "visibleKeyboardStops": 5,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 7.477311671473615,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "index.html",
+      "theme": "light",
+      "width": 1280,
+      "visibleKeyboardStops": 11,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 6.196011781680303,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "about.html",
+      "theme": "light",
+      "width": 1280,
+      "visibleKeyboardStops": 5,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 7.477311671473615,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "index.html",
+      "theme": "dark",
+      "width": 390,
+      "visibleKeyboardStops": 11,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 9.267282179849287,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "about.html",
+      "theme": "dark",
+      "width": 390,
+      "visibleKeyboardStops": 5,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 10.935995144930258,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "index.html",
+      "theme": "dark",
+      "width": 1280,
+      "visibleKeyboardStops": 11,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 9.267282179849287,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "about.html",
+      "theme": "dark",
+      "width": 1280,
+      "visibleKeyboardStops": 5,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 10.935995144930258,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "admin.html",
+      "theme": "light",
+      "width": 390,
+      "visibleKeyboardStops": 6,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 7.477311671473615,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "admin.html",
+      "theme": "light",
+      "width": 1280,
+      "visibleKeyboardStops": 6,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 7.477311671473615,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "admin.html",
+      "theme": "dark",
+      "width": 390,
+      "visibleKeyboardStops": 6,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 7.5553612625564455,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "admin.html",
+      "theme": "dark",
+      "width": 1280,
+      "visibleKeyboardStops": 6,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 7.5553612625564455,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "login.html",
+      "theme": "light",
+      "width": 390,
+      "visibleKeyboardStops": 7,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 6.196011781680303,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "login.html",
+      "theme": "light",
+      "width": 1280,
+      "visibleKeyboardStops": 7,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 6.196011781680303,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "login.html",
+      "theme": "dark",
+      "width": 390,
+      "visibleKeyboardStops": 7,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 10.060622526438994,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    },
+    {
+      "page": "login.html",
+      "theme": "dark",
+      "width": 1280,
+      "visibleKeyboardStops": 7,
+      "allVisitedFocusVisible": true,
+      "minimumMeasuredTextContrast": 10.060622526438994,
+      "noHorizontalOverflow": true,
+      "images": 0,
+      "landmarks": [
+        {
+          "name": "header",
+          "count": 1
+        },
+        {
+          "name": "nav",
+          "count": 1
+        },
+        {
+          "name": "main",
+          "count": 1
+        },
+        {
+          "name": "footer",
+          "count": 1
+        }
+      ],
+      "labelsAndHeadings": "Raw receipt retained; assertions passed"
+    }
+  ]
+}

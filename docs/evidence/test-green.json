@@ -1,0 +1,10 @@
+{
+  "command": [
+    "npm",
+    "test"
+  ],
+  "cwd": "/tmp/adw-learner-walkthrough-20261113-01a1d372/learner-work/dev/my-app",
+  "startedAt": "2026-11-13T20:11:58.512822+00:00",
+  "exit": 0,
+  "output": "\n> my-app@0.0.0 test\n> vitest run\n\n\n RUN  v5.1.0 /tmp/adw-learner-walkthrough-20261113-01a1d372/learner-work/dev/my-app\n\n\n Test Files  1 passed (1)\n      Tests  7 passed (7)\n   Start at  20:11:58\n   Duration  64ms (transform 51%, import 27%, tests 12%, worker 9%)\n\n"
+}

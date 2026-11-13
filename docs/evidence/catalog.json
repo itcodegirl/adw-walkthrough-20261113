@@ -1,0 +1,568 @@
+{
+  "project_id": "dpejxjvjdrxmyxpzyxjy",
+  "time": "2026-11-13T20:32:47.723Z",
+  "inspections": [
+    {
+      "kind": "columns",
+      "query": "select table_name,column_name,data_type,is_nullable,column_default from information_schema.columns where table_schema='public' and table_name in ('offerings','inquiries','profiles') order by table_name,ordinal_position;",
+      "rows": [
+        {
+          "table_name": "inquiries",
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "table_name": "inquiries",
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "NO",
+          "column_default": "now()"
+        },
+        {
+          "table_name": "inquiries",
+          "column_name": "name",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "table_name": "inquiries",
+          "column_name": "email",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "table_name": "inquiries",
+          "column_name": "message",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "table_name": "inquiries",
+          "column_name": "handled",
+          "data_type": "boolean",
+          "is_nullable": "NO",
+          "column_default": "false"
+        },
+        {
+          "table_name": "inquiries",
+          "column_name": "user_id",
+          "data_type": "uuid",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "table_name": "offerings",
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "table_name": "offerings",
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "NO",
+          "column_default": "now()"
+        },
+        {
+          "table_name": "offerings",
+          "column_name": "title",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "table_name": "offerings",
+          "column_name": "description",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "table_name": "offerings",
+          "column_name": "sort_order",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "column_default": "0"
+        },
+        {
+          "table_name": "offerings",
+          "column_name": "published",
+          "data_type": "boolean",
+          "is_nullable": "NO",
+          "column_default": "false"
+        },
+        {
+          "table_name": "offerings",
+          "column_name": "user_id",
+          "data_type": "uuid",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "table_name": "profiles",
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "table_name": "profiles",
+          "column_name": "is_admin",
+          "data_type": "boolean",
+          "is_nullable": "NO",
+          "column_default": "false"
+        }
+      ]
+    },
+    {
+      "kind": "constraints",
+      "query": "select c.relname as table_name,p.conname,pg_get_constraintdef(p.oid) as definition from pg_constraint p join pg_class c on c.oid=p.conrelid join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and c.relname in ('offerings','inquiries','profiles') order by c.relname,p.conname;",
+      "rows": [
+        {
+          "table_name": "inquiries",
+          "conname": "inquiries_pkey",
+          "definition": "PRIMARY KEY (id)"
+        },
+        {
+          "table_name": "offerings",
+          "conname": "offerings_pkey",
+          "definition": "PRIMARY KEY (id)"
+        },
+        {
+          "table_name": "profiles",
+          "conname": "profiles_id_fkey",
+          "definition": "FOREIGN KEY (id) REFERENCES auth.users(id)"
+        },
+        {
+          "table_name": "profiles",
+          "conname": "profiles_pkey",
+          "definition": "PRIMARY KEY (id)"
+        }
+      ]
+    },
+    {
+      "kind": "rls",
+      "query": "select tablename,rowsecurity from pg_tables where schemaname='public' and tablename in ('offerings','inquiries','profiles') order by tablename;",
+      "rows": [
+        {
+          "tablename": "inquiries",
+          "rowsecurity": true
+        },
+        {
+          "tablename": "offerings",
+          "rowsecurity": true
+        },
+        {
+          "tablename": "profiles",
+          "rowsecurity": true
+        }
+      ]
+    },
+    {
+      "kind": "grants",
+      "query": "select table_name,grantee,privilege_type,column_name from information_schema.role_column_grants where table_schema='public' and table_name in ('offerings','inquiries','profiles') and grantee in ('anon','authenticated') order by table_name,grantee,privilege_type,column_name;",
+      "rows": [
+        {
+          "table_name": "inquiries",
+          "grantee": "anon",
+          "privilege_type": "INSERT",
+          "column_name": "email"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "anon",
+          "privilege_type": "INSERT",
+          "column_name": "message"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "anon",
+          "privilege_type": "INSERT",
+          "column_name": "name"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT",
+          "column_name": "email"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT",
+          "column_name": "message"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT",
+          "column_name": "name"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT",
+          "column_name": "user_id"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "created_at"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "email"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "handled"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "id"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "message"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "name"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "user_id"
+        },
+        {
+          "table_name": "inquiries",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE",
+          "column_name": "handled"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "anon",
+          "privilege_type": "SELECT",
+          "column_name": "description"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "anon",
+          "privilege_type": "SELECT",
+          "column_name": "published"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "anon",
+          "privilege_type": "SELECT",
+          "column_name": "sort_order"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "anon",
+          "privilege_type": "SELECT",
+          "column_name": "title"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "created_at"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "description"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "id"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "published"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "sort_order"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "title"
+        },
+        {
+          "table_name": "offerings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "user_id"
+        },
+        {
+          "table_name": "profiles",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "id"
+        },
+        {
+          "table_name": "profiles",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "column_name": "is_admin"
+        }
+      ]
+    },
+    {
+      "kind": "policies",
+      "query": "select tablename,policyname,roles,cmd,qual,with_check from pg_policies where schemaname='public' and tablename in ('offerings','inquiries','profiles') order by tablename,policyname;",
+      "rows": [
+        {
+          "tablename": "inquiries",
+          "policyname": "admins read inquiries",
+          "roles": "{authenticated}",
+          "cmd": "SELECT",
+          "qual": "(EXISTS ( SELECT 1\n   FROM profiles\n  WHERE ((profiles.id = ( SELECT auth.uid() AS uid)) AND (profiles.is_admin = true))))",
+          "with_check": null
+        },
+        {
+          "tablename": "inquiries",
+          "policyname": "admins update inquiries",
+          "roles": "{authenticated}",
+          "cmd": "UPDATE",
+          "qual": "(EXISTS ( SELECT 1\n   FROM profiles\n  WHERE ((profiles.id = ( SELECT auth.uid() AS uid)) AND (profiles.is_admin = true))))",
+          "with_check": null
+        },
+        {
+          "tablename": "inquiries",
+          "policyname": "public submits inquiries",
+          "roles": "{anon,authenticated}",
+          "cmd": "INSERT",
+          "qual": null,
+          "with_check": "(((user_id = ( SELECT auth.uid() AS uid)) OR (user_id IS NULL)) AND (handled = false))"
+        },
+        {
+          "tablename": "inquiries",
+          "policyname": "users read own inquiries",
+          "roles": "{authenticated}",
+          "cmd": "SELECT",
+          "qual": "(( SELECT auth.uid() AS uid) = user_id)",
+          "with_check": null
+        },
+        {
+          "tablename": "offerings",
+          "policyname": "admins read all offerings",
+          "roles": "{authenticated}",
+          "cmd": "SELECT",
+          "qual": "(EXISTS ( SELECT 1\n   FROM profiles\n  WHERE ((profiles.id = ( SELECT auth.uid() AS uid)) AND (profiles.is_admin = true))))",
+          "with_check": null
+        },
+        {
+          "tablename": "offerings",
+          "policyname": "public reads published offerings",
+          "roles": "{anon,authenticated}",
+          "cmd": "SELECT",
+          "qual": "(published = true)",
+          "with_check": null
+        },
+        {
+          "tablename": "profiles",
+          "policyname": "users read own profile",
+          "roles": "{authenticated}",
+          "cmd": "SELECT",
+          "qual": "(( SELECT auth.uid() AS uid) = id)",
+          "with_check": null
+        }
+      ]
+    },
+    {
+      "kind": "trigger",
+      "query": "select tgname,tgenabled,pg_get_triggerdef(oid) as definition from pg_trigger where tgrelid='auth.users'::regclass and tgname='on_auth_user_created';",
+      "rows": [
+        {
+          "tgname": "on_auth_user_created",
+          "tgenabled": "O",
+          "definition": "CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION handle_new_user()"
+        }
+      ]
+    },
+    {
+      "kind": "function",
+      "query": "select proname,prosecdef,proconfig,pg_get_functiondef(oid) as definition from pg_proc where oid='public.handle_new_user()'::regprocedure;",
+      "rows": [
+        {
+          "proname": "handle_new_user",
+          "prosecdef": true,
+          "proconfig": [
+            "search_path=public"
+          ],
+          "definition": "CREATE OR REPLACE FUNCTION public.handle_new_user()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\nbegin\n  insert into public.profiles (id, is_admin)\n  values (new.id, false);\n  return new;\nend;\n$function$\n"
+        }
+      ]
+    },
+    {
+      "kind": "identity_counts",
+      "query": "select (select count(*) from auth.users) as auth_users,(select count(*) from public.profiles) as profiles,(select count(*) from public.profiles where is_admin) as admins;",
+      "rows": [
+        {
+          "auth_users": 0,
+          "profiles": 0,
+          "admins": 0
+        }
+      ]
+    },
+    {
+      "kind": "baseline",
+      "query": "select 'offerings' as table_name,coalesce(jsonb_agg(to_jsonb(t) order by id),'[]'::jsonb) as rows from (select id,created_at,title,description,sort_order,published,user_id from public.offerings) t union all select 'inquiries',coalesce(jsonb_agg(to_jsonb(t) order by id),'[]'::jsonb) from (select id,created_at,name,email,message,handled,user_id from public.inquiries) t union all select 'profiles',coalesce(jsonb_agg(to_jsonb(t) order by id),'[]'::jsonb) from (select id,is_admin from public.profiles) t;",
+      "rows": [
+        {
+          "table_name": "offerings",
+          "rows": [
+            {
+              "id": "25649f69-2201-4345-bcc4-3bdd511dd243",
+              "title": "Portfolio refresh",
+              "user_id": null,
+              "published": true,
+              "created_at": "2026-11-13T18:51:02.627582+00:00",
+              "sort_order": 2,
+              "description": "Improve an existing portfolio so it works harder for you."
+            },
+            {
+              "id": "4b9a0b96-d4f9-412b-8e97-9bd891dd1df2",
+              "title": "Content updates",
+              "user_id": null,
+              "published": false,
+              "created_at": "2026-11-13T18:51:09.74818+00:00",
+              "sort_order": 3,
+              "description": "Keep useful information current for your customers."
+            },
+            {
+              "id": "7e51e91c-df31-4267-8b98-593dd1891f81",
+              "title": "Website launch",
+              "user_id": null,
+              "published": true,
+              "created_at": "2026-11-13T18:51:02.627582+00:00",
+              "sort_order": 1,
+              "description": "A clear first website for your business."
+            },
+            {
+              "id": "907c742b-1ff3-49fb-a169-a3bfeaa94101",
+              "title": "probe-draft",
+              "user_id": null,
+              "published": false,
+              "created_at": "2026-11-13T19:11:04.019082+00:00",
+              "sort_order": 99,
+              "description": "Synthetic unpublished row for outside-app permission checks."
+            }
+          ]
+        },
+        {
+          "table_name": "inquiries",
+          "rows": [
+            {
+              "id": "37884da3-2bb7-48e0-bb5a-258e7e1d8f4c",
+              "name": "Learner20 fixed",
+              "email": "learner20fixed@example.invalid",
+              "handled": false,
+              "message": "20-fixed-verified: synthetic enquiry after pending-state correction.",
+              "user_id": null,
+              "created_at": "2026-11-13T19:02:48.718646+00:00"
+            },
+            {
+              "id": "726eb0f1-eb02-49b6-87b7-831bd3f095fe",
+              "name": "Learner29 Anonymous",
+              "email": "learner29local@example.invalid",
+              "handled": false,
+              "message": "29-owner-omission: real signed-out inquiry keeps user_id absent from request.",
+              "user_id": null,
+              "created_at": "2026-11-13T20:04:49.340139+00:00"
+            },
+            {
+              "id": "9de04ba2-45dd-46ab-be95-2a1f9390d084",
+              "name": "Learner29 Anonymous",
+              "email": "learner29hosted@example.invalid",
+              "handled": false,
+              "message": "29-owner-omission: real signed-out inquiry keeps user_id absent from request.",
+              "user_id": null,
+              "created_at": "2026-11-13T20:06:22.476936+00:00"
+            },
+            {
+              "id": "a1dc69c9-a86c-4504-ab97-8c2fe60a702a",
+              "name": "Learner20 Local",
+              "email": "learner20local@example.invalid",
+              "handled": false,
+              "message": "20-local-original: synthetic first contact save.",
+              "user_id": null,
+              "created_at": "2026-11-13T19:01:24.445112+00:00"
+            },
+            {
+              "id": "c3c6e0e3-7a85-4389-b116-b8ab4e37bdf8",
+              "name": "Learner20 hosted",
+              "email": "learner20hosted@example.invalid",
+              "handled": false,
+              "message": "20-hosted-verified: synthetic enquiry after pending-state correction.",
+              "user_id": null,
+              "created_at": "2026-11-13T19:06:18.846006+00:00"
+            },
+            {
+              "id": "c9017304-a337-4ed2-98f3-28b56123d5a3",
+              "name": "Learner",
+              "email": "learner21@example.invalid",
+              "handled": false,
+              "message": "21-hostile-original: synthetic inquiry that must remain unchanged.",
+              "user_id": null,
+              "created_at": "2026-11-13T19:11:27.079305+00:00"
+            },
+            {
+              "id": "d3982a8c-ac42-4269-a412-1de0f4807922",
+              "name": "Learner22",
+              "email": "learner22@example.invalid",
+              "handled": false,
+              "message": "22-network: synthetic browser receipt for query audit.",
+              "user_id": null,
+              "created_at": "2026-11-13T19:16:35.20974+00:00"
+            },
+            {
+              "id": "e90ec36f-070c-42d3-a2e6-7bbec1739f9e",
+              "name": "Learner Jo",
+              "email": "learner@example.invalid",
+              "handled": true,
+              "message": "Synthetic walkthrough enquiry: a clear first website for a local shop.",
+              "user_id": null,
+              "created_at": "2026-11-13T18:52:22.598622+00:00"
+            }
+          ]
+        },
+        {
+          "table_name": "profiles",
+          "rows": []
+        }
+      ]
+    }
+  ]
+}

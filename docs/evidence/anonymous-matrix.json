@@ -1,0 +1,186 @@
+{
+  "context": "Fresh isolated browser, no Auth session, normal hosted page console-equivalent fetch",
+  "rows": [
+    {
+      "table": "offerings",
+      "actor": "signed-out visitor",
+      "row": "published",
+      "action": "read",
+      "expected": "200 nonempty published rows",
+      "method": "GET",
+      "path": "/offerings?select=title,published&published=eq.true",
+      "status": 200,
+      "body": [
+        {
+          "title": "Website launch",
+          "published": true
+        },
+        {
+          "title": "Portfolio refresh",
+          "published": true
+        }
+      ],
+      "date": "2026-11-13T20:35:46.730Z"
+    },
+    {
+      "table": "offerings",
+      "actor": "signed-out visitor",
+      "row": "drafts",
+      "action": "read",
+      "expected": "200[]",
+      "method": "GET",
+      "path": "/offerings?select=title&published=eq.false",
+      "status": 200,
+      "body": [],
+      "date": "2026-11-13T20:35:47.052Z"
+    },
+    {
+      "table": "inquiries",
+      "actor": "signed-out visitor",
+      "row": "any",
+      "action": "read",
+      "expected": "42501/no rows",
+      "method": "GET",
+      "path": "/inquiries?select=name,email,message",
+      "status": 401,
+      "body": {
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.inquiries TO anon;",
+        "message": "permission denied for table inquiries"
+      },
+      "date": "2026-11-13T20:35:47.342Z"
+    },
+    {
+      "table": "offerings",
+      "actor": "signed-out visitor",
+      "row": "probe-draft",
+      "action": "update",
+      "expected": "42501/unchanged",
+      "method": "PATCH",
+      "path": "/offerings?title=eq.probe-draft",
+      "status": 401,
+      "body": {
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT UPDATE ON public.offerings TO anon;",
+        "message": "permission denied for table offerings"
+      },
+      "date": "2026-11-13T20:35:47.638Z"
+    },
+    {
+      "table": "inquiries",
+      "actor": "signed-out visitor",
+      "row": "Learner",
+      "action": "delete",
+      "expected": "42501/unchanged",
+      "method": "DELETE",
+      "path": "/inquiries?name=eq.Learner",
+      "status": 401,
+      "body": {
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT, DELETE ON public.inquiries TO anon;",
+        "message": "permission denied for table inquiries"
+      },
+      "date": "2026-11-13T20:35:47.786Z"
+    },
+    {
+      "table": "offerings",
+      "actor": "signed-out visitor",
+      "row": "new probe-public-insert",
+      "action": "insert",
+      "expected": "42501/no new row",
+      "method": "POST",
+      "path": "/offerings",
+      "status": 401,
+      "body": {
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT INSERT ON public.offerings TO anon;",
+        "message": "permission denied for table offerings"
+      },
+      "date": "2026-11-13T20:35:47.938Z"
+    },
+    {
+      "table": "offerings",
+      "actor": "signed-out visitor",
+      "row": "probe-draft",
+      "action": "delete",
+      "expected": "42501/unchanged",
+      "method": "DELETE",
+      "path": "/offerings?title=eq.probe-draft",
+      "status": 401,
+      "body": {
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT DELETE ON public.offerings TO anon;",
+        "message": "permission denied for table offerings"
+      },
+      "date": "2026-11-13T20:35:48.041Z"
+    },
+    {
+      "table": "inquiries",
+      "actor": "signed-out visitor",
+      "row": "Learner",
+      "action": "update message",
+      "expected": "42501/unchanged",
+      "method": "PATCH",
+      "path": "/inquiries?name=eq.Learner",
+      "status": 401,
+      "body": {
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT, UPDATE ON public.inquiries TO anon;",
+        "message": "permission denied for table inquiries"
+      },
+      "date": "2026-11-13T20:35:48.160Z"
+    },
+    {
+      "table": "inquiries",
+      "actor": "signed-out visitor",
+      "row": "new Probe",
+      "action": "insert allowed3fields",
+      "expected": "201 empty body/one row",
+      "method": "POST",
+      "path": "/inquiries",
+      "status": 201,
+      "body": "",
+      "date": "2026-11-13T20:35:48.324Z"
+    },
+    {
+      "table": "inquiries",
+      "actor": "signed-out visitor",
+      "row": "new Probe with handledtrue",
+      "action": "insert protected field",
+      "expected": "42501/no row",
+      "method": "POST",
+      "path": "/inquiries",
+      "status": 401,
+      "body": {
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT INSERT ON public.inquiries TO anon;",
+        "message": "permission denied for table inquiries"
+      },
+      "date": "2026-11-13T20:35:48.434Z"
+    },
+    {
+      "table": "inquiries",
+      "actor": "signed-out visitor",
+      "row": "Learner",
+      "action": "update handled",
+      "expected": "42501/unchanged",
+      "method": "PATCH",
+      "path": "/inquiries?name=eq.Learner",
+      "status": 401,
+      "body": {
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT, UPDATE ON public.inquiries TO anon;",
+        "message": "permission denied for table inquiries"
+      },
+      "date": "2026-11-13T20:35:48.670Z"
+    }
+  ]
+}

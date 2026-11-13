@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "evidence/learner/28-gate.mjs",
+    "32-live-gate",
+    "https://adw-walkthrough-20261113.vercel.app"
+  ],
+  "cwd": "/tmp/adw-learner-walkthrough-20261113-01a1d372",
+  "startedAt": "2026-11-13T20:43:52.272965+00:00",
+  "exit": 0,
+  "output": "{\n  \"base\": \"https://adw-walkthrough-20261113.vercel.app\",\n  \"actualAnonymousGate\": true,\n  \"adminPrivateQueries\": 0,\n  \"noMarkupFlashAtStableState\": true,\n  \"loginLink\": \"/login.html\",\n  \"publicHomeStillAccessible\": true,\n  \"requests\": [\n    \"/rest/v1/offerings?select=title%2Cdescription&published=eq.true&order=sort_order.asc\"\n  ]\n}\n"
+}

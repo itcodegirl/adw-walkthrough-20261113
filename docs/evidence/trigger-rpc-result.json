@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-13T20:42:19.832Z",
+  "actor": "real anonymous HTTP client; publishable key only; no JWT or fabricated user",
+  "valuesOmitted": true,
+  "probes": [
+    {
+      "label": "positive control",
+      "path": "/offerings?select=title,published&published=eq.true",
+      "method": "GET",
+      "status": 200,
+      "response": "[{\"title\":\"Website launch\",\"published\":true}, \n {\"title\":\"Portfolio refresh\",\"published\":true}]"
+    },
+    {
+      "label": "direct trigger RPC",
+      "path": "/rpc/handle_new_user",
+      "method": "POST",
+      "status": 404,
+      "response": "{\"code\":\"PGRST202\",\"details\":\"Searched for the function public.handle_new_user without parameters or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.\",\"hint\":null,\"message\":\"Could not find the function public.handle_new_user without parameters in the schema cache\"}"
+    }
+  ]
+}

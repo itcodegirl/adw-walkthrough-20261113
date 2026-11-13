@@ -1,0 +1,32 @@
+[
+  {
+    "file": "sql/01-tables.sql",
+    "lessonReceipt": "19-create-schema.sql",
+    "sha256": "6af6de826d034673409d7a2de2915db5d94ab11327d0e9beba6ad4f5073f7341"
+  },
+  {
+    "file": "sql/02-public-access.sql",
+    "lessonReceipt": "20-public-grants.sql",
+    "sha256": "04ca7f99b4b661ca4b48a15280413d538523952a1efbb5349b76736defc75302"
+  },
+  {
+    "file": "sql/03-profiles.sql",
+    "lessonReceipt": "28-profiles-schema.sql",
+    "sha256": "15a4a0adfc5c03b56e91e844f2845a6a93b6812cd3e81a10baa7cb3ed67fb9b4"
+  },
+  {
+    "file": "sql/04-admin-access.sql",
+    "lessonReceipt": "28-admin-policies.sql",
+    "sha256": "12a70178bd8d2883f0fec87bb78dad66e7ca3bddb84be8268e452a4315644757"
+  },
+  {
+    "file": "sql/05-signup-profile.sql",
+    "lessonReceipt": "29-trigger.sql",
+    "sha256": "19e3d524e6aeb7d0269dbf835302342ae590daf24d8f347775af24ce695ef85a"
+  },
+  {
+    "file": "sql/06-owner-access.sql",
+    "lessonReceipt": "29-ownership.sql",
+    "sha256": "161c223a9a4487c7c89a82ad2fdf0d64f70716bb77455447935b3055aec00794"
+  }
+]

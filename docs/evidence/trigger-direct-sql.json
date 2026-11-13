@@ -1,0 +1,18 @@
+{
+  "project_id": "dpejxjvjdrxmyxpzyxjy",
+  "checkedAt": "2026-11-13T20:43:20.371Z",
+  "query": "set role anon; select public.handle_new_user(); reset role;",
+  "expected": "Direct invocation of a trigger-returning function is refused; this is a SQL-role diagnostic, not a fabricated Auth session.",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"error\":{\"name\":\"HttpException\",\"message\":\"Failed to run sql query: ERROR:  0A000: trigger functions can only be called as triggers\\nCONTEXT:  compilation of PL/pgSQL function \\\"handle_new_user\\\" near line 1\\n\"}}"
+      }
+    ],
+    "structuredContent": {
+      "error_code": "INVALID_ARGUMENT"
+    },
+    "isError": true
+  }
+}
