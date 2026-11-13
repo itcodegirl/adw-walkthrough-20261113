@@ -306,6 +306,25 @@ main > p {
   font-weight: var(--weight-bold);
 }
 
+/* Data states. The section status spans the card grid and collapses
+   once cards are rendered. Error text uses the verified error colour
+   plus bold weight, so meaning is not carried by colour alone. */
+.section-status {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.section-status:empty {
+  display: none;
+}
+
+.section-status.is-error,
+.form-status.is-error {
+  color: var(--color-error);
+  font-weight: var(--weight-bold);
+}
+
 .field input:focus-visible,
 .field textarea:focus-visible,
 .contact button:focus-visible {
@@ -323,6 +342,10 @@ main > p {
   border: 0;
   border-radius: var(--radius-sm);
   cursor: pointer;
+}
+
+.contact button:disabled {
+  cursor: wait;
 }
 
 section {
