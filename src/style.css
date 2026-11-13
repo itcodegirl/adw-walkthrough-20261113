@@ -1,9 +1,14 @@
 /* Design tokens. Every rule below references these by role. */
 :root {
-  /* Colour */
+  /* Colour — measured with WCAG sRGB contrast, 2026-11-13.
+     Verified text pairs (all >= 4.5:1):
+     text/bg 12.200:1; accent/bg 7.477:1; error/bg 6.196:1;
+     text/surface 12.941:1; accent/surface 7.931:1;
+     on-accent/accent 7.477:1. No soft-text or primary surface used. */
   --color-bg: #faf8f4;
   --color-text: #25352b;
   --color-accent: #285b3a;
+  --color-on-accent: #faf8f4;
   --color-surface: #fff;
   --color-border: #e3ded4;
   --color-border-input: #c9c3b6;
@@ -292,7 +297,7 @@ main > p {
   padding: var(--space-3) var(--space-5);
   font: inherit;
   font-weight: var(--weight-bold);
-  color: var(--color-bg);
+  color: var(--color-on-accent);
   background: var(--color-accent);
   border: 0;
   border-radius: var(--radius-sm);

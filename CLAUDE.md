@@ -40,3 +40,12 @@ Standing rules for all work in this project.
 - Suggest a commit after each verified working change; never leave large edits uncommitted. The learner reviews and makes the commit.
 - Work happens on branches; propose commits after verified changes; keep diffs scoped to the task.
 - All colors, fonts, and spacing come from the :root tokens; never write raw values in components; propose a new token if one is missing. Structural keywords and the documented media-condition literal are justified exceptions.
+
+## Accessibility floor (every generation)
+- semantic landmarks; heading levels never skip
+- every image gets meaningful alt (empty alt only if truly decorative)
+- every text/background pair clears 4.5:1: use only pairs recorded as verified in style.css, and text on a filled accent or primary surface uses that surface's own on-color token
+- every input has a visible, associated label; errors linked via aria-describedby
+- all interactive elements keyboard-reachable with VISIBLE focus styles — never remove outlines without replacement
+- after UI changes, remind me to run the keyboard walk on affected areas
+- walk what the diff touched, full walk at checkpoints; record the verification in the commit message
