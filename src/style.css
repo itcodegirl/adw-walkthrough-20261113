@@ -141,6 +141,25 @@ main > p {
   margin: 0;
 }
 
+.faq ul {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faq h3 {
+  color: var(--color-accent);
+  font-size: var(--text-md);
+  margin: 0 0 var(--space-1);
+}
+
+.faq p {
+  margin: 0;
+}
+
 .contact form {
   grid-column: 1 / -1;
   display: grid;
