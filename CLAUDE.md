@@ -51,3 +51,8 @@ Standing rules for all work in this project.
 - all interactive elements keyboard-reachable with VISIBLE focus styles — never remove outlines without replacement
 - after UI changes, remind me to run the keyboard walk on affected areas
 - walk what the diff touched, full walk at checkpoints; record the verification in the commit message
+
+## Secrets
+- Never write key values into any committed file; use environment references only. Documentation uses placeholders, not the real project URL or key values.
+- New credentials get a blast-radius note: what could a holder do?
+- Flag a task that appears to need the secret key. It belongs server-side; this app has no trusted server yet. Never read .env files to fill documentation.
