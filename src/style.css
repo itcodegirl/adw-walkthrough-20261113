@@ -52,6 +52,28 @@ main > p {
   margin: 0;
 }
 
+.hero-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--brand);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.hero-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.hero-link:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 4px;
+}
+
+#selected-work {
+  scroll-margin-top: 1rem;
+}
+
 section {
   margin-top: 3rem;
 }
