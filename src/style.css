@@ -54,6 +54,27 @@
   --content-width: 40rem;
 }
 
+/* Dark scheme: colour tokens only. Every component keeps reading the
+   same role tokens, so nothing below this block changes. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Colour — measured with WCAG sRGB contrast, 2026-11-13.
+       Verified text pairs (all >= 4.5:1):
+       text/bg 15.267:1; accent/bg 10.936:1; error/bg 10.061:1;
+       text/surface 12.938:1; accent/surface 9.267:1;
+       on-accent/accent 10.936:1. */
+    color-scheme: dark;
+    --color-bg: #111812;
+    --color-text: #e7eee5;
+    --color-accent: #a5d5ad;
+    --color-on-accent: #111812;
+    --color-surface: #1c281f;
+    --color-border: #6b806f;
+    --color-border-input: #879d8b;
+    --color-error: #ffad9b;
+  }
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
