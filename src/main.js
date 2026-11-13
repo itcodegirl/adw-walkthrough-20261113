@@ -2,6 +2,7 @@ import './style.css'
 import { renderShell } from './shell.js'
 import { supabase } from './supabase.js'
 import { getSessionState, onSessionChange } from './auth.js'
+import { validateName, validateEmail, validateMessage } from './validate.js'
 
 renderShell(document.body.dataset.page)
 
@@ -59,30 +60,7 @@ async function initOfferings() {
   data.forEach((offering) => renderOffering(section, offering))
 }
 
-/* ---------------------------------------------------------------
-   Validators. Pure functions: take a string, return '' when the
-   value is accepted or a specific fix message when it is rejected.
-   No DOM access here, so each one can be traced on its own.
-   --------------------------------------------------------------- */
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-function validateName(value) {
-  if (value.trim() === '') return 'Tell us your name.'
-  return ''
-}
-
-function validateEmail(value) {
-  const trimmed = value.trim()
-  if (trimmed === '') return 'Add an email address so we know how to reply.'
-  if (!EMAIL_PATTERN.test(trimmed)) return 'Use an email address like you@example.com.'
-  return ''
-}
-
-function validateMessage(value) {
-  if (value.trim() === '') return 'Tell us a little about your project.'
-  return ''
-}
+/* Validators live in validate.js so they can be tested on their own. */
 
 function formatDate(value) {
   const date = new Date(value)

@@ -56,3 +56,10 @@ Standing rules for all work in this project.
 - Never write key values into any committed file; use environment references only. Documentation uses placeholders, not the real project URL or key values.
 - New credentials get a blast-radius note: what could a holder do?
 - Flag a task that appears to need the secret key. It belongs server-side; this app has no trusted server yet. Never read .env files to fill documentation.
+
+## Test before committing
+
+- Run tests after changes; new pure logic ships with a test.
+- A red test blocks the commit until resolved deliberately.
+- Workflow: branch → task → diff → TEST → commit → push → live.
+- These pure-function smoke tests do not prove DOM, network, Auth or database policies.
