@@ -138,6 +138,52 @@ header {
   text-underline-offset: var(--underline-offset);
 }
 
+/* Sign-in state in the header: a link when signed out, a greeting
+   plus a small Sign out button when signed in. */
+.site-auth {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.site-auth a {
+  font-weight: var(--weight-regular);
+}
+
+.site-auth a[aria-current="page"] {
+  font-weight: var(--weight-bold);
+  text-decoration: underline;
+  text-underline-offset: var(--underline-offset);
+}
+
+.site-signout {
+  padding: var(--space-1) var(--space-3);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.site-signout:disabled {
+  cursor: wait;
+}
+
+.site-signout:focus-visible {
+  outline: var(--stroke-focus) solid var(--color-accent);
+  outline-offset: var(--focus-offset-sm);
+}
+
+.site-auth-error {
+  color: var(--color-error);
+  font-weight: var(--weight-bold);
+}
+
 main {
   padding: var(--space-8) var(--space-4);
 }
@@ -224,7 +270,8 @@ main > p {
   margin: 0;
 }
 
-.contact form {
+.contact form,
+.login form {
   grid-column: 1 / -1;
   display: grid;
   gap: var(--space-4);
@@ -328,7 +375,8 @@ main > p {
 
 /* Manage offerings page. Everything in the section spans the card
    grid; the list itself stacks one card per row at every width. */
-.admin > * {
+.admin > *,
+.login > * {
   grid-column: 1 / -1;
 }
 
@@ -354,13 +402,15 @@ main > p {
 .field select:focus-visible,
 .field textarea:focus-visible,
 .contact button:focus-visible,
-.admin button:focus-visible {
+.admin button:focus-visible,
+.login button:focus-visible {
   outline: var(--stroke-focus) solid var(--color-accent);
   outline-offset: var(--focus-offset-sm);
 }
 
 .contact button,
-.admin button {
+.admin button,
+.login button {
   justify-self: start;
   padding: var(--space-3) var(--space-5);
   font: inherit;
@@ -372,7 +422,8 @@ main > p {
   cursor: pointer;
 }
 
-.contact button:disabled {
+.contact button:disabled,
+.login button:disabled {
   cursor: wait;
 }
 
