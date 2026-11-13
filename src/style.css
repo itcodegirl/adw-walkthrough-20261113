@@ -17,6 +17,7 @@
   --text-md: 1.125rem;
   --text-lg: 1.5rem;
   --text-xl: clamp(1.75rem, 5vw, 2.5rem);
+  --weight-regular: 400;
   --weight-bold: 700;
   --leading-body: 1.5;
   --leading-heading: 1.2;
@@ -77,6 +78,36 @@ header a:focus-visible {
 header a:focus-visible {
   outline: var(--stroke-focus) solid var(--color-accent);
   outline-offset: var(--focus-offset-lg);
+}
+
+/* Shared shell: site name on the left, nav on the right, wrapping
+   under the name when the row is too narrow (e.g. 390px). */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  font-weight: var(--weight-regular);
+}
+
+/* Current page: underline plus weight, never colour alone. */
+.site-nav a[aria-current="page"] {
+  font-weight: var(--weight-bold);
+  text-decoration: underline;
+  text-underline-offset: var(--underline-offset);
 }
 
 main {
