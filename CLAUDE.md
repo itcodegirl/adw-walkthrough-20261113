@@ -36,3 +36,5 @@ Standing rules for all work in this project.
   ```
   itcodegirl <88835851+itcodegirl@users.noreply.github.com>
   ```
+
+- Suggest a commit after each verified working change; never leave large edits uncommitted. The learner reviews and makes the commit.
