@@ -44,6 +44,11 @@ async function initOfferings() {
     return
   }
 
+  // Read succeeded: the count comes from the rows already fetched, so an
+  // empty result honestly shows (0). Loading and error keep the plain heading.
+  const count = data ? data.length : 0
+  section.querySelector('h2').textContent = `Services (${count})`
+
   if (!data || data.length === 0) {
     status.textContent = OFFERINGS_EMPTY_TEXT
     return
