@@ -376,7 +376,8 @@ main > p {
 /* Manage offerings page. Everything in the section spans the card
    grid; the list itself stacks one card per row at every width. */
 .admin > *,
-.login > * {
+.login > *,
+.my-inquiries > * {
   grid-column: 1 / -1;
 }
 
@@ -385,7 +386,8 @@ main > p {
   gap: var(--space-4);
 }
 
-.admin-list {
+.admin-list,
+.inquiry-list {
   display: grid;
   gap: var(--space-4);
   margin: 0;
@@ -399,7 +401,8 @@ main > p {
 }
 
 /* Sections are grids, so the hidden attribute needs an explicit rule. */
-.admin[hidden] {
+.admin[hidden],
+.my-inquiries[hidden] {
   display: none;
 }
 

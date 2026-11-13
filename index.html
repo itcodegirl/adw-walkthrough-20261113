@@ -85,6 +85,15 @@
           <p class="form-status" id="contact-status" role="status"></p>
         </form>
       </section>
+      <!-- Shown only for a signed-in session. This section's query is
+           filtered to the current user's id, even for admins, who keep
+           broader access through their own policies. For ordinary users,
+           isolation is enforced server-side by the own-row policy. -->
+      <section class="my-inquiries" id="my-inquiries" hidden>
+        <h2>My inquiries</h2>
+        <p class="section-status" id="my-inquiries-state" role="status"></p>
+        <ul class="inquiry-list" id="my-inquiries-list" role="list"></ul>
+      </section>
     </main>
     <footer><!-- filled by src/shell.js --></footer>
     <script type="module" src="/src/main.js"></script>

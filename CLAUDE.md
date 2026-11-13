@@ -27,7 +27,7 @@ Standing rules for all work in this project.
 - No real personal data, other people's information, or secrets in tasks or test content.
 - Invent placeholders when sample data is needed.
 - Queries name their columns — no select star; every query handles its error half.
-- Writes send only user-provided fields, never workflow state (handled, user_id), which the column grant refuses and defaults fill in. The policy's with check is the second layer behind it.
+- Inquiry inserts send name, email and message. Signed-out inserts omit user_id. Signed-in inserts may add only the current session user's id; the WITH CHECK policy verifies it. Never accept handled, created_at or an arbitrary owner from form input.
 
 ## Git
 

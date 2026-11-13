@@ -1,6 +1,7 @@
 import './style.css'
 import { renderShell } from './shell.js'
 import { supabase } from './supabase.js'
+import { getSessionState, onSessionChange } from './auth.js'
 
 renderShell(document.body.dataset.page)
 
@@ -83,6 +84,113 @@ function validateMessage(value) {
   return ''
 }
 
+function formatDate(value) {
+  const date = new Date(value)
+  return Number.isNaN(date.getTime()) ? '' : date.toLocaleString()
+}
+
+/* ---------------------------------------------------------------
+   My inquiries. Shown only for a signed-in session. The query is
+   filtered to the current user's id, even for admins; ordinary-user
+   isolation is enforced server-side by the own-row policy. On
+   sign-out or account change the list is cleared and hidden, and any
+   reply still in flight for the previous account is dropped.
+   --------------------------------------------------------------- */
+
+const MINE_LOADING_TEXT = 'Loading your inquiries…'
+const MINE_ERROR_TEXT = 'Your inquiries could not be loaded right now. Please try again later.'
+const MINE_EMPTY_TEXT = 'You have not sent any inquiries from this account yet.'
+
+function initMyInquiries() {
+  const section = document.getElementById('my-inquiries')
+  if (!section) return null // about.html has no personal list
+
+  const state = document.getElementById('my-inquiries-state')
+  const list = document.getElementById('my-inquiries-list')
+  let currentUserId = null
+  let latestRequest = 0
+
+  function setState(text, isError = false) {
+    state.textContent = text
+    state.classList.toggle('is-error', isError)
+  }
+
+  function renderRow(row) {
+    const item = document.createElement('li')
+    const article = document.createElement('article')
+    const heading = document.createElement('h3')
+    const message = document.createElement('p')
+    const meta = document.createElement('p')
+    heading.textContent = row.handled ? 'Answered' : 'Received'
+    message.textContent = row.message
+    meta.className = 'admin-meta'
+    meta.textContent = formatDate(row.created_at)
+    article.append(heading, message, meta)
+    item.append(article)
+    return item
+  }
+
+  function clear() {
+    latestRequest += 1 // any fetch still in flight is now stale
+    currentUserId = null
+    setState('')
+    list.replaceChildren()
+    section.hidden = true
+  }
+
+  async function fetchMine() {
+    const userId = currentUserId
+    if (!userId) return
+    const requestId = ++latestRequest
+    setState(MINE_LOADING_TEXT)
+    list.replaceChildren()
+
+    let result
+    try {
+      result = await supabase
+        .from('inquiries')
+        .select('id, created_at, message, handled, user_id')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false })
+    } catch (thrown) {
+      result = { data: null, error: thrown }
+    }
+
+    if (requestId !== latestRequest || currentUserId !== userId) return // stale
+
+    if (result.error) {
+      console.error('Your inquiries could not be loaded:', result.error)
+      setState(MINE_ERROR_TEXT, true)
+      return
+    }
+
+    const rows = result.data ?? []
+    if (rows.length === 0) {
+      setState(MINE_EMPTY_TEXT)
+      return
+    }
+
+    setState('')
+    rows.forEach((row) => list.append(renderRow(row)))
+  }
+
+  onSessionChange((auth) => {
+    const user = auth.ready ? auth.session?.user ?? null : null
+    if (!user) {
+      clear()
+      return
+    }
+    if (user.id === currentUserId) return // same account, nothing to redo
+    clear()
+    currentUserId = user.id
+    section.hidden = false
+    fetchMine()
+  })
+
+  // Lets the contact form refresh the list after this account saves one.
+  return { refresh: fetchMine }
+}
+
 /* ---------------------------------------------------------------
    Contact form UI. Reads field values, calls the validators, and
    updates classes, aria-invalid and message text. Runs on blur and
@@ -95,6 +203,8 @@ const SUBMIT_PENDING_TEXT = 'Saving your enquiry…'
 const SUBMIT_OK_TEXT = 'Thanks, your enquiry is saved. Jenna will read it and get back to you.'
 const SUBMIT_ERROR_TEXT =
   'Your enquiry could not be saved. Your details are still here, so please try again.'
+const SUBMIT_AUTH_UNKNOWN_TEXT =
+  'Still checking whether you are signed in. Your details are still here; please try again in a moment.'
 
 const FIELDS = [
   { id: 'contact-name', validate: validateName },
@@ -137,7 +247,7 @@ function showStatus(status, text, isError = false) {
   status.classList.toggle('is-error', isError)
 }
 
-function initContactForm() {
+function initContactForm(myInquiries) {
   const form = document.getElementById('contact-form')
   if (!form) return // about.html shares this module but has no form
 
@@ -183,10 +293,24 @@ function initContactForm() {
       return
     }
 
-    // Only the three validated fields, trimmed, keyed by their name attribute.
+    // Identity is read once, at submit time, from the shared controller.
+    // Until the initial session read has settled, or if it failed, we do
+    // not guess: the user is asked to retry and nothing is sent.
+    const auth = getSessionState()
+    if (!auth.ready || auth.error) {
+      showStatus(status, SUBMIT_AUTH_UNKNOWN_TEXT, true)
+      return
+    }
+
+    // Exactly name, email and message, trimmed, keyed by the inputs' name
+    // attributes. Signed in: add only this session's user id. Signed out:
+    // the user_id key is absent, not null. handled, created_at and any
+    // owner value from the form are never sent.
     const inquiry = Object.fromEntries(
       fields.map(({ input }) => [input.name, input.value.trim()]),
     )
+    const user = auth.session?.user ?? null
+    if (user) inquiry.user_id = user.id
 
     setPending(true)
     showStatus(status, SUBMIT_PENDING_TEXT)
@@ -210,8 +334,13 @@ function initContactForm() {
     form.reset()
     fields.forEach(({ input }) => clearFieldState(input))
     showStatus(status, SUBMIT_OK_TEXT)
+
+    // The personal list only exists for a signed-in session; refresh checks
+    // the current account itself, so a sign-out in between is harmless.
+    if (user && myInquiries) myInquiries.refresh()
   })
 }
 
 initOfferings()
-initContactForm()
+const myInquiries = initMyInquiries()
+initContactForm(myInquiries)
