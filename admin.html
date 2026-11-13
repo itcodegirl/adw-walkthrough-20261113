@@ -4,16 +4,27 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage offerings | Jenna Studio</title>
+    <title>Manage | Jenna Studio</title>
   </head>
   <body data-page="admin">
     <header><!-- filled by src/shell.js --></header>
     <main>
-      <h1>Manage offerings</h1>
-      <p>A read-only view of the offerings table. Editing arrives with login.</p>
-      <section class="admin">
+      <h1>Manage</h1>
+      <p>Offerings and inquiries for signed-in admins.</p>
+
+      <!-- Account gate. This is a UX gate only: it decides what to show.
+           Data protection comes from the database policies: users read
+           their own profile, admins read all offerings, admins read
+           inquiries, admins update inquiries. -->
+      <section class="admin" id="admin-account">
+        <h2>Account</h2>
+        <p class="section-status" id="admin-role" role="status">Checking sign-in…</p>
+        <p id="admin-signin" hidden><a href="login.html">Sign in</a> to manage offerings and inquiries.</p>
+      </section>
+
+      <section class="admin" id="admin-offerings" hidden>
         <h2>Offerings</h2>
-        <p class="form-note">Published and All show the same rows until login, because drafts remain restricted. Drafts appear once login exists in Module 4. Inquiries remain unavailable until login.</p>
+        <p class="form-note">Admins see drafts as well as published offerings. Everyone else sees published offerings only.</p>
         <form class="admin-controls" role="search" novalidate>
           <div class="field">
             <label for="admin-search">Search by title</label>
@@ -28,9 +39,24 @@
           </div>
         </form>
         <p class="section-status" id="admin-count" role="status"></p>
-        <p class="section-status" id="admin-state" role="status">Loading offerings…</p>
+        <p class="section-status" id="admin-state" role="status"></p>
         <button type="button" id="admin-clear" hidden>Clear search</button>
         <ul class="admin-list" id="admin-list" role="list"></ul>
+      </section>
+
+      <section class="admin" id="admin-inquiries" hidden>
+        <h2>Inquiries</h2>
+        <form class="admin-controls" novalidate>
+          <div class="field">
+            <label for="inquiries-filter">Show</label>
+            <select id="inquiries-filter" name="filter">
+              <option value="unhandled" selected>Unhandled</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+        </form>
+        <p class="section-status" id="inquiries-state" role="status"></p>
+        <ul class="admin-list" id="inquiries-list" role="list"></ul>
       </section>
     </main>
     <footer><!-- filled by src/shell.js --></footer>

@@ -398,6 +398,19 @@ main > p {
   font-size: var(--text-sm);
 }
 
+/* Sections are grids, so the hidden attribute needs an explicit rule. */
+.admin[hidden] {
+  display: none;
+}
+
+.admin article button {
+  margin-top: var(--space-3);
+}
+
+.admin article .section-status {
+  margin-top: var(--space-2);
+}
+
 .field input:focus-visible,
 .field select:focus-visible,
 .field textarea:focus-visible,
