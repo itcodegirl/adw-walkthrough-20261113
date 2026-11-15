@@ -1,8 +1,8 @@
 # Jenna Studio
 
-A small portfolio site for a web developer who serves local businesses. It started as a two-page static page and grew, one reviewed task at a time, into a four-page app that reads services from a database, saves enquiries, and has the code paths for magic-link sign-in and an admin inbox.
+A small portfolio site for a web developer who serves local businesses. It started as a two-page static page and grew, one reviewed task at a time, into a four-page app that reads services from a database, saves enquiries, and lets customers sign in by email to see their own enquiries. An admin can review and mark enquiries handled.
 
-This is a disposable learning project with a private repository and a publicly reachable [test deployment](https://adw-walkthrough-20261113.vercel.app). It has not completed the capstone or been shared with external reviewers. Read the verification limits below before relying on its signed-in paths.
+The hosted app passed **10/10 AI Developer Workflow capstone criteria** by November 15, 2026. The separate two-person feedback step is pending. [Try the live demo](https://adw-walkthrough-20261113.vercel.app) · [Read the ten checks and their results](docs/EVIDENCE.md)
 
 ## Stack
 
@@ -21,7 +21,7 @@ npm ci
 npm run dev -- --host 127.0.0.1 --port 50795
 ```
 
-Cloning requires access to the private repository. Use the lockfile with `npm ci`; then configure your own disposable project before running the app.
+Use the lockfile with `npm ci` and configure your own disposable Supabase project before starting Vite.
 
 Other scripts:
 
@@ -31,7 +31,7 @@ npm run preview   # serve the build locally
 npm test          # run the unit tests
 ```
 
-The port matters. The project's Supabase Auth redirect allowlist was attested by the project owner to contain `http://localhost:50795` and `http://127.0.0.1:50795`, with the site URL set to the live alias. Those entries are configuration, not proof: no sign-in redirect has been verified at runtime. The Vite default port, 5173, has not been confirmed as allowed.
+For local login, add the origin you use to your project's Supabase Auth redirect allowlist. The walkthrough configured `http://localhost:50795` and `http://127.0.0.1:50795`, with the hosted app as its Site URL. The email-link round trip was verified on the hosted app. The local round trip remains untested.
 
 ## Environment variables
 
@@ -54,20 +54,14 @@ Set them in a gitignored `.env.local` for local work and in the hosting provider
 
 **Shared shell.** `src/shell.js` renders the header, nav, and footer on every page. `src/auth.js` holds one auth subscription per page, reads the initial session once with a revision guard, and exposes the state to the rest of the page. The header shows Sign in when signed out and an email greeting with Sign out when signed in.
 
-## What is verified and what is not
+## What the walkthrough verified
 
-Verified with real data on the public paths: two published offerings load and search; a validated anonymous enquiry saves with exactly name, email, and message, a null user id, and handled defaulting to false; all four signed-out pages pass the contrast and keyboard floor in both themes at emulated widths of 390 and 1280 pixels; signed-out Manage shows the prompt and sends no private queries; direct anonymous reads and writes outside the public grants are refused while the public controls succeed.
+- Signed-out visitors read published offerings and submit an enquiry. Manage shows its sign-in prompt, and direct anonymous requests cannot read private inquiries or drafts.
+- Three test accounts signed in through real emailed links. An admin read the private inbox and marked an inquiry handled. Two ordinary users each submitted and saw their own inquiry. With each verified user's database permissions, reading or updating the other inquiry by ID returned zero rows in both directions.
+- Signing out cleared the header and restored the Manage sign-in prompt on a fresh visit. A separate admin check also confirmed that a reload preserved the active session and signing out cleared the private list.
+- The Supabase dashboard showed row-level security enabled on all three public tables. Browser checks passed in light and dark themes at 390 and 1280 CSS pixels, across 16 signed-out and eight signed-in combinations.
 
-Blocked because authorized test inboxes and working inbox access were unavailable. The Auth user and profile counts are zero. The following have code paths but have not been tested for real:
-
-- Magic-link email delivery, local and live redirects, session persistence, header state, and sign-out.
-- A real admin profile, admin views of drafts and the inbox, and Mark handled.
-- Isolation between accounts B and C: own rows, cross-account reads, forged-owner inserts, and mutations.
-- The signup trigger firing on a real signup.
-
-Intercepted one-time-password UI tests were run against the login page. They show the form behaves, and nothing more: they do not prove email delivery or login. Of the ten capstone checks, the ones that depend on a real session are not met, so the capstone is not complete. Authenticated dashboard inspection, the public-repository condition, and sharing with two real reviewers are also outstanding. The [evidence note](docs/EVIDENCE.md) records every rubric row, including limitations of signed-out floor checks.
-
-A final Supabase adviser also flags browser-role EXECUTE on the signup trigger function. Anonymous RPC and direct SQL probes could not invoke it; the remaining least-privilege follow-up and limits are documented in [the evidence note](docs/EVIDENCE.md). No privilege change was applied.
+The evidence note records the test methods, the signup-trigger permission follow-up, and the earlier lesson checks still open. The walkthrough used emulated viewport widths. Two-person feedback is pending. [Capstone evidence](docs/EVIDENCE.md)
 
 ## Tests
 
@@ -77,11 +71,11 @@ A final Supabase adviser also flags browser-role EXECUTE on the signup trigger f
 
 The six numbered `.sql` files in `sql/` are the exact taught schema, grants, policies, and signup trigger, kept for reproducibility. Apply them in numeric order to a new, empty, disposable Supabase project only. Do not replay them against the current project, which is already provisioned. They contain no real user id and no admin seed.
 
-The trigger creates each new profile with `is_admin` false. Once a real account has signed in and its profile exists, promote that exact id; insert a profile by hand only if the trigger did not create one. The resume steps are in [docs/RESUME-AUTH.md](docs/RESUME-AUTH.md). Public content such as offerings must be seeded by the project owner (this run used the connected SQL API); the app does not edit offerings.
+The trigger creates each new profile with `is_admin` false. Once a real account has signed in and its profile exists, promote that exact id; insert a profile by hand only if the trigger did not create one. Public content such as offerings must be seeded by the project owner (this run used the connected SQL API); the app does not edit offerings.
 
 ## Further reading
 
 - [docs/DECISIONS.md](docs/DECISIONS.md) — why things were built the way they were.
 - [docs/EVIDENCE.md](docs/EVIDENCE.md) — what was actually verified, and how.
 - [docs/REVIEW.md](docs/REVIEW.md) — the six-question review record.
-- [docs/RESUME-AUTH.md](docs/RESUME-AUTH.md) — how to pick up the blocked auth work.
+- [Original Auth test plan](docs/RESUME-AUTH.md) — the November 13 plan for the later hosted checks.
