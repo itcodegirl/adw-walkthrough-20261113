@@ -69,7 +69,7 @@ The evidence note records the test methods, the signup-trigger permission follow
 
 ## Database setup
 
-The six numbered `.sql` files in `sql/` are the exact taught schema, grants, policies, and signup trigger, kept for reproducibility. Apply them in numeric order to a new, empty, disposable Supabase project only. Do not replay them against the current project, which is already provisioned. They contain no real user id and no admin seed.
+The first six numbered `.sql` files in `sql/` are the exact taught schema, grants, policies, and signup trigger, kept for reproducibility. The seventh, `07-signup-trigger-privileges.sql`, was added after the capstone: it removes browser-role `EXECUTE` from the signup trigger function. Apply all seven in numeric order to a new, empty, disposable Supabase project only. Do not replay them against the current project, which is already provisioned. They contain no real user id and no admin seed.
 
 The trigger creates each new profile with `is_admin` false. Once a real account has signed in and its profile exists, promote that exact id; insert a profile by hand only if the trigger did not create one. Public content such as offerings must be seeded by the project owner (this run used the connected SQL API); the app does not edit offerings.
 
